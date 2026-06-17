@@ -33,14 +33,17 @@ module spi_clk_div(
     
     always@(posedge sys_clk) begin
         if(!sys_rst_n) begin
+            //reset logic
             counter <= 8'b0;
             fall_en <= 1'b0;
             rise_en <= 1'b0;
         end else if (!en) begin
+            //When enable = 0
             counter <= 8'b0;
             fall_en <= 1'b0;
             rise_en <= 1'b0;
         end else begin
+            //Rise and fall enable signal logic
             fall_en <= 1'b0;
             rise_en <= 1'b0;
             if(counter == clk_div) begin
